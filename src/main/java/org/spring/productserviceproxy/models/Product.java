@@ -1,6 +1,6 @@
 package org.spring.productserviceproxy.models;
 
-import jdk.jfr.Category;
+
 import lombok.Getter;
 import lombok.Setter;
 
