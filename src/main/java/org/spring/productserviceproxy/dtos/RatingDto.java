@@ -1,6 +1,5 @@
 package org.spring.productserviceproxy.dtos;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

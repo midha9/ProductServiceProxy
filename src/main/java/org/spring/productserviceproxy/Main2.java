@@ -1,7 +1,9 @@
 package org.spring.productserviceproxy;
 
+
 import org.spring.productserviceproxy.dtos.ProductDto;
-import  java.util.List;
+
+import java.util.List;
 
 public class Main2 {
     public static void main(String[] args) {
