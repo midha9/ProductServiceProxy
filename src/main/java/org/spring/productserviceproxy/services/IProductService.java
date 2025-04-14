@@ -12,7 +12,7 @@ public interface IProductService {
 
     Product getSingleProduct(Long productId);
 
-    Product addNewProduct(IClientProductDto productDto);
+    Product addNewProduct(Product product);
 
     Product updateProduct(Long productId, Product product);
 
