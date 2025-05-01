@@ -3,6 +3,7 @@ package org.spring.productserviceproxy.repostries;
 
 import org.spring.productserviceproxy.models.Categories;
 import org.spring.productserviceproxy.models.Product;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -87,11 +88,11 @@ class ProductRepoTest {
     @Rollback(value = false)
     void saveProductsAndCategory3() {
         Categories category = categoryRepo.findById(2L);
-        List<Product> productList = category.getProductList();
-        for (Product product : productList) {
-            System.out.println(product.getPrice());
-        }
-
+        //List<Product> productList = category.getProductList();
+//        for (Product product : productList) {
+//            System.out.println(product.getPrice());
+//        }
+        System.out.println("Debug");
 
 //        Product product = new Product();
 //        product.setPrice(1012);
