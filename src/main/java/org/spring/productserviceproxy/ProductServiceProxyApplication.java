@@ -10,4 +10,5 @@ public class ProductServiceProxyApplication {
         SpringApplication.run(ProductServiceProxyApplication.class, args);
     }
 
+
 }

@@ -2,10 +2,14 @@ package org.spring.productserviceproxy.models;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 
 import java.util.List;
 
@@ -15,6 +19,11 @@ import java.util.List;
 public class Categories extends BaseModel{
     private String name;
     private String description;
-    @OneToMany(mappedBy = "category", cascade= CascadeType.ALL)
+    @OneToMany(mappedBy = "category")
+    @Fetch( FetchMode.SELECT)
     private List<Product> productList;
 }
+
+// mappedBy is available for one to one many and many and one to many;
+
+
