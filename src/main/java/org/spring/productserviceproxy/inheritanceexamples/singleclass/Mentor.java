@@ -11,4 +11,5 @@ import lombok.Setter;
 @DiscriminatorValue(value = "2")
 public class Mentor extends User {
     private int gradYear;
+
 }

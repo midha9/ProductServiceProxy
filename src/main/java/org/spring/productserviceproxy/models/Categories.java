@@ -10,7 +10,6 @@ import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-
 import java.util.List;
 
 @Setter
@@ -24,6 +23,5 @@ public class Categories extends BaseModel{
     private List<Product> productList;
 }
 
-// mappedBy is available for one to one many and many and one to many;
-
+// Mapped is available for one to one, one to many and many to many
 

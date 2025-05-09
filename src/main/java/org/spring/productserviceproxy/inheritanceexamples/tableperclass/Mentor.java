@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name = "tpc_mentor")
-
-public class Mentor extends User {
+public class Mentor extends User{
     private int gradYear;
+
 }
