@@ -1,11 +1,17 @@
 package org.spring.productserviceproxy.controllers;
 
 import org.spring.productserviceproxy.clients.IClientProductDto;
+import org.spring.productserviceproxy.clients.fakestore.dto.FakeStoreProductDto;
 import org.spring.productserviceproxy.dtos.ProductDto;
-import org.spring.productserviceproxy.services.FakeStoreProductService;
 import org.spring.productserviceproxy.models.Categories;
 import org.spring.productserviceproxy.models.Product;
+import org.spring.productserviceproxy.security.JwtObject;
+import org.spring.productserviceproxy.security.TokenValidator;
+import org.spring.productserviceproxy.services.FakeStoreProductService;
 import org.spring.productserviceproxy.services.IProductService;
+import jakarta.annotation.Nullable;
+import org.antlr.v4.runtime.Token;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
@@ -13,6 +19,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 
 // This controller will always answer products
 @RestController
@@ -20,9 +28,11 @@ import java.util.List;
 public class ProductController {
 
     IProductService productService;
+    TokenValidator tokenValidator;
 
-    public ProductController(IProductService productService) {
+    public ProductController(IProductService productService, TokenValidator tokenValidator) {
         this.productService = productService;
+        this.tokenValidator = tokenValidator;
     }
 
     @GetMapping("")
@@ -32,12 +42,23 @@ public class ProductController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getSingleProduct(@PathVariable("id") Long productId) {
+    public ResponseEntity<Product> getSingleProduct(@Nullable @RequestHeader(HttpHeaders.AUTHORIZATION) String authToken,
+                                                    @PathVariable("id") Long productId) {
         try {
+            JwtObject authTokenObj = null;
+            if(authToken != null) {
+                Optional<JwtObject> authObjectOptional = tokenValidator.validateToken(authToken);
+                if(authObjectOptional.isEmpty()) {
+                    // throw exception
+                }
+                authTokenObj = authObjectOptional.get();
+            }
             MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
             headers.add("Accept", "application/json");
             headers.add("Content-Type", "application/json");
             headers.add("auth-token", "heyaccess");
+            // Apply rule based user Roles
+            // Product product = this.productService.getSingleProduct(productId, authTokenObj);
             Product product = this.productService.getSingleProduct(productId);
             if(productId < 1) {
                 throw new IllegalArgumentException("Something went wrong");

@@ -1,5 +1,6 @@
 package org.spring.productserviceproxy.controllers;
 
+import org.mockito.Mock;
 import org.spring.productserviceproxy.models.Product;
 import org.spring.productserviceproxy.services.IProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,7 +27,7 @@ public class ProductControllerMVCTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @Mock
     IProductService productService;
 
     @Autowired
