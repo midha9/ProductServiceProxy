@@ -19,4 +19,7 @@ public class Product extends BaseModel{
     private String imageUrl;
     private Boolean isPublic;
     private int numberOfUnits;
+
+
+
 }
