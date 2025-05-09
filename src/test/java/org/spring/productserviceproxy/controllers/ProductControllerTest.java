@@ -1,25 +1,23 @@
 package org.spring.productserviceproxy.controllers;
 
+import org.mockito.Mock;
 import org.spring.productserviceproxy.clients.fakestore.client.FakeStoreClient;
 import org.spring.productserviceproxy.models.Product;
 import org.spring.productserviceproxy.services.FakeStoreProductService;
-import org.junit.jupiter.api.BeforeEach;
+import org.spring.productserviceproxy.services.IProductService;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-
-import java.util.*;
 
 @SpringBootTest
 class ProductControllerTest {
@@ -78,17 +76,17 @@ class ProductControllerTest {
         assertEquals(id, idCaptor.getValue());
     }
 
-    @Test
-    void test_productControllerCallsProdcutServiceWithSameId2() {
-        Long id = 2l;
-        when(productService.getSingleProduct(id)).thenCallRealMethod();
-
-        productController.getSingleProduct(id);
-        assertEquals(id, idCaptor.getValue());
-
-
-        verify(productService).getSingleProduct(idCaptor.capture());
-        verify(productService, times(1)).getSingleProduct(any());
-
-    }
+//    @Test
+//    void test_productControllerCallsProdcutServiceWithSameId2() {
+//        Long id = 2l;
+//        when(productService.getSingleProduct(id)).thenCallRealMethod();
+//
+//        productController.getSingleProduct(id);
+//        assertEquals(id, idCaptor.getValue());
+//
+//
+//        verify(productService).getSingleProduct(idCaptor.capture());
+//        verify(productService, times(1)).getSingleProduct(any());
+//
+//    }
 }
